@@ -1,0 +1,127 @@
+
+header {
+    display: flex;               /* Pone los elementos en horizontal */
+    justify-content: space-between;     /* Centra todo el contenido */
+    align-items: center;         /* Centra verticalmente */
+    padding: 1px 20px;
+    background-color: #302f2e;   /* Opcional: color de fondo */
+    gap: 40px;                   /* Espacio entre logo y menú */
+}
+
+header img {
+    position: relative;
+    width: 110px;                /* Ancho del logo */
+    height: 75px;                /* Mantiene proporciones */
+    margin:0%;
+}
+
+nav ul {
+    list-style: none;            /* Quitar puntitos */
+    display: flex;               /* Poner los <li> en horizontal */
+    gap: 20px;                   /* Separación entre enlaces */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+}
+/* aqui le voy a dar el fondo a la pagina debajo del header */
+body {
+    margin: 0;                 /* quita márgenes del navegador */
+    font-family: "Playfair Display SC", serif;
+}
+.Bloque-inicio {
+    width: 100%;                      /* ancho del rectángulo */
+    margin: 0px ;               
+    background-image: url("imagenes/fondobloqueinicio.jpg");
+    background-size: cover;          /* cubre todo el rectángulo */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;                    
+    display: flex;                   
+    justify-content: center;
+    padding-top: 90px;
+    text-align: center;            /* opcional: esquinas redondeadas */
+    box-shadow: 0 4px 10px rgba(7, 4, 4, 0.3);  /* opcional: sombra elegante */
+    align-items: flex-start;
+}
+.Bloque-inicio h2 {
+    animation: fadeIn 4s ease forwards;
+    color: white;
+    font-size: 48px;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.Bloque-1{
+            
+    width: 1350px;           /* Mantienes tu tamaño máximo */
+    height: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    background-color: #302217;
+    font-family: "Playfair Display SC", serif;
+    padding: 0 60px;             /* Esto reemplaza esos márgenes agresivos */
+    overflow: hidden;
+}
+
+.Bloque-1-texto {    
+    max-width: 450px;            /* Un poquito más ancho para que el texto respire */
+    margin: 0;                   /* Quitamos el empuje innecesario */
+    margin-left: 60px;
+}
+
+.Bloque-1 h2{
+    color: white;
+}
+
+.Bloque-1 h3{
+    color: white;
+    font-family: 'Playfair Display', serif;
+    text-transform: none;
+}
+
+
+
+.Bloque-1-imagen{       /*este controla el tamaño del contenedor de imagen*/
+    width: 800px;        /* ahora en PX como querías */
+    height: 400px;        /* ocupa toda la altura del bloque */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2px;
+}
+
+/* tamaño de la imagen dentro del contenedor */
+.Bloque-1-imagen img{
+    width: 683px;        /* tamaño que no rompe el diseño */
+    height: 100%;
+    object-fit: cover;
+
+    
+}
+
+.Bloque-2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #302f2e;
+    width:1350px;
+    height: 400px;
+}
+.Bloque-2 a{
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    font-family: "Playfair Display SC", serif;
+    padding: 20px;
+    margin:0px;
+}
