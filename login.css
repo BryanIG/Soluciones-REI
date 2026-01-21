@@ -1,93 +1,99 @@
-/* From Uiverse.io by alexruix */ 
-.form-box {
-  width: 500px;
-  background: #f1f7fe;
-  overflow: hidden;
-  border-radius: 16px;
-  color: #010101;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
 }
 
-.form {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 32px 24px 24px;
-  gap: 16px;
-  text-align: center;
-}
-
-/*Form text*/
-.title {
-  font-weight: bold;
-  font-size: 1.6rem;
-}
-
-.subtitle {
-  font-size: 1rem;
-  color: #666;
-}
-
-/*Inputs box*/
-.form-container {
-  overflow: hidden;
-  border-radius: 8px;
-  background-color: #fff;
-  margin: 1rem 0 .5rem;
-  width: 100%;
-}
-
-.input {
-  background: none;
-  border: 0;
-  outline: 0;
-  height: 40px;
-  width: 100%;
-  border-bottom: 1px solid #eee;
-  font-size: .9rem;
-  padding: 8px 15px;
-}
-
-.form-section {
-  padding: 16px;
-  font-size: .85rem;
-  background-color: #e0ecfb;
-  box-shadow: rgb(0 0 0 / 8%) 0 -1px;
-}
-
-.form-section a {
-  font-weight: bold;
-  color: #0066ff;
-  transition: color .3s ease;
-}
-
-.form-section a:hover {
-  color: #005ce6;
-  text-decoration: underline;
-}
-
-/*Button*/
-.form button {
-  background-color: #0066ff;
-  color: #fff;
-  border: 0;
-  border-radius: 24px;
-  padding: 10px 16px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color .3s ease;
-}
-
-.form button:hover {
-  background-color: #005ce6;
-}
 body {
-  margin: 0; /* quitar márgenes por defecto */
-  height: 100vh; /* ocupar toda la ventana */
-  display: flex; /* centrar el login */
-  justify-content: center;
-  align-items: center;
-  background: url("imagenes/fondologin.jpeg") no-repeat center center;
-  background-size: cover; /* llena toda la pantalla */
-  font-family: 'Noto Serif', serif;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background: url('img/pingu.png') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    z-index: -2;
+}
+
+.titulo-bienvenido {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.login-container {
+    background: transparent;
+    border-radius: 28px;
+    box-shadow: 0 15px 60px rgba(0, 0, 0, 0.45);
+    max-width: 1100px;
+    width: 92%;
+    min-height: 620px;
+    overflow: hidden;
+    display: flex;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.left-side {
+    flex: 1;
+    background: url('img/pingu.png') no-repeat center;
+    background-size: cover;
+    position: relative;
+}
+
+.left-side::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.left-content {
+    position: relative;
+    padding: 70px 60px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-side {
+    flex: 1;
+    padding: 70px 60px;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-control {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.65) !important;
+    border-radius: 0 !important;
+    color: white !important;
+}
+
+.input-group-text {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.btn-login {
+    background: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 1.2rem;
 }
