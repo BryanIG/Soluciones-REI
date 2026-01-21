@@ -1,18 +1,34 @@
+/*aqui meto la fuente que se le aplica a la pagina*/
+body {
+    font-family: 'Noto Serif', serif;
+}
 
 header {
     display: flex;               /* Pone los elementos en horizontal */
     justify-content: space-between;     /* Centra todo el contenido */
     align-items: center;         /* Centra verticalmente */
     padding: 1px 20px;
-    background-color: #302f2e;   /* Opcional: color de fondo */
+    background-color: #0f0f0e;   /* Opcional: color de fondo */
     gap: 40px;                   /* Espacio entre logo y menú */
 }
 
-header img {
+.header img-1 {
     position: relative;
-    width: 110px;                /* Ancho del logo */
-    height: 75px;                /* Mantiene proporciones */
-    margin:0%;
+                
+    
+}
+.header img-2{
+    background-color: #0f0f0e;
+    position:relative;
+}
+.iniciarsesion-text{
+    font-size: 20px;
+    color: rgb(233, 228, 228);
+    text-decoration: none;
+    background-color: #0f0f0e;
+    font-family: 'Noto Serif', serif;
+    margin-top:10px;
+    display:inline-block;
 }
 
 nav ul {
@@ -29,27 +45,25 @@ nav ul li a {
     color: white;
 }
 /* aqui le voy a dar el fondo a la pagina debajo del header */
-body {
-    margin: 0;                 /* quita márgenes del navegador */
-    font-family: "Playfair Display SC", serif;
-}
+
 .Bloque-inicio {
     width: 100%;                      /* ancho del rectángulo */
     margin: 0px ;               
-    background-image: url("imagenes/fondobloqueinicio.jpg");
+    background-image: url("imagenes/image\ \(2\).jpg");
     background-size: cover;          /* cubre todo el rectángulo */
     background-position: center;
     background-repeat: no-repeat;
-    height: 500px;                    
+    height: 600px;                    
     display: flex;                   
     justify-content: center;
     padding-top: 90px;
     text-align: center;            /* opcional: esquinas redondeadas */
     box-shadow: 0 4px 10px rgba(7, 4, 4, 0.3);  /* opcional: sombra elegante */
     align-items: flex-start;
+
 }
 .Bloque-inicio h2 {
-    animation: fadeIn 4s ease forwards;
+    animation: fadeIn 5s ease forwards;
     color: white;
     font-size: 48px;
 }
@@ -57,56 +71,6 @@ body {
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
-}
-
-.Bloque-1{
-            
-    width: 1350px;           /* Mantienes tu tamaño máximo */
-    height: 400px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    background-color: #302217;
-    font-family: "Playfair Display SC", serif;
-    padding: 0 60px;             /* Esto reemplaza esos márgenes agresivos */
-    overflow: hidden;
-}
-
-.Bloque-1-texto {    
-    max-width: 450px;            /* Un poquito más ancho para que el texto respire */
-    margin: 0;                   /* Quitamos el empuje innecesario */
-    margin-left: 60px;
-}
-
-.Bloque-1 h2{
-    color: white;
-}
-
-.Bloque-1 h3{
-    color: white;
-    font-family: 'Playfair Display', serif;
-    text-transform: none;
-}
-
-
-
-.Bloque-1-imagen{       /*este controla el tamaño del contenedor de imagen*/
-    width: 800px;        /* ahora en PX como querías */
-    height: 400px;        /* ocupa toda la altura del bloque */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 2px;
-}
-
-/* tamaño de la imagen dentro del contenedor */
-.Bloque-1-imagen img{
-    width: 683px;        /* tamaño que no rompe el diseño */
-    height: 100%;
-    object-fit: cover;
-
-    
 }
 
 .Bloque-2{
@@ -123,5 +87,38 @@ body {
     text-align: center;
     font-family: "Playfair Display SC", serif;
     padding: 20px;
-    margin:0px;
+    
+}
+/*Tamaño Carrusel fotos*/
+/* Tus estilos originales para la imagen del carrusel */
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+} 
+/* Estilos para el pie de página */
+.footer a:hover i {
+    color: #0d6efd; /* azul Bootstrap */
+    transform: scale(1.2);
+    transition: all 0.3s ease;
+}
+.footer i {
+    font-size: 1.8rem; /* tamaño uniforme */
+    vertical-align: middle; /* opcional: alinea todos al mismo nivel */
+}
+
+.footer a {
+    display: inline-block;
+    margin: 0 0.5rem; /* espacio uniforme entre iconos */
+    color: white;      /* color por defecto */
+    transition: all 0.3s ease;
+}
+
+.footer a:hover i {
+    transform: scale(1.2); /* efecto hover */
+}
+.footer i.fab.fa-tiktok {
+    font-size: 1.45rem; /* un poquito más pequeño para que encaje */
+    vertical-align: middle;
 }
