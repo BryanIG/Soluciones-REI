@@ -8,13 +8,17 @@ html, body {
 body {
     font-family: Arial, Helvetica, sans-serif;
     color: white;
-    background: url('imagenes/fondologin.jpeg') no-repeat center center fixed; /* Cambiar imagen de fondo aqui */
+
+    /* Cambiar imagen de fondo principal aquí */
+    background: url('imagenes/fondologin.jpeg') no-repeat center center fixed;
     background-size: cover;
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+/* Capa oscura + blur sobre el fondo */
 body::after {
     content: "";
     position: fixed;
@@ -24,12 +28,14 @@ body::after {
     z-index: -2;
 }
 
+/* Título de bienvenida */
 .titulo-bienvenido {
     font-family: "Playfair Display", serif;
     font-weight: 600;
     letter-spacing: 1px;
 }
 
+/* Contenedor principal del login */
 .login-container {
     background: transparent;
     border-radius: 28px;
@@ -39,17 +45,24 @@ body::after {
     min-height: 620px;
     overflow: hidden;
     display: flex;
+
+    /* Efecto glassmorphism */
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 }
 
+/* Lado izquierdo con imagen */
 .left-side {
     flex: 1;
-    background: url('imagenes/fondologin.jpeg') no-repeat center; /* Fondo dentro del contenedor de login */
+
+    /* Imagen del panel izquierdo */
+    background: url('imagenes/fondologin.jpeg') no-repeat center;
     background-size: cover;
+
     position: relative;
 }
 
+/* Oscurecer imagen del lado izquierdo */
 .left-side::before {
     content: "";
     position: absolute;
@@ -66,6 +79,7 @@ body::after {
     justify-content: center;
 }
 
+/* Lado derecho (formulario) */
 .right-side {
     flex: 1;
     padding: 70px 60px;
@@ -75,6 +89,7 @@ body::after {
     justify-content: center;
 }
 
+/* Inputs */
 .form-control {
     background: transparent !important;
     border: none !important;
@@ -83,6 +98,7 @@ body::after {
     color: white !important;
 }
 
+/* Iconos de inputs */
 .input-group-text {
     background: transparent;
     border: none;
@@ -90,6 +106,7 @@ body::after {
     font-size: 1.3rem;
 }
 
+/* Botón login */
 .btn-login {
     background: #000;
     border: none;
