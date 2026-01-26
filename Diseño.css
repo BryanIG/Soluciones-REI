@@ -1,40 +1,41 @@
-/*aqui meto la fuente que se le aplica a la pagina*/
+/* aqui meto la fuente que se le aplica a la pagina */
 body {
     font-family: 'Noto Serif', serif;
 }
 
+/* ================= HEADER ================= */
 header {
-    display: flex;               /* Pone los elementos en horizontal */
-    justify-content: space-between;     /* Centra todo el contenido */
-    align-items: center;         /* Centra verticalmente */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 1px 20px;
-    background-color: #0f0f0e;   /* Opcional: color de fondo */
-    gap: 40px;                   /* Espacio entre logo y menú */
+    background-color: #0f0f0e;
+    gap: 40px;
 }
 
 .header img-1 {
     position: relative;
-                
-    
 }
-.header img-2{
+
+.header img-2 {
     background-color: #0f0f0e;
-    position:relative;
+    position: relative;
 }
-.iniciarsesion-text{
+
+.iniciarsesion-text {
     font-size: 20px;
     color: rgb(233, 228, 228);
     text-decoration: none;
     background-color: #0f0f0e;
     font-family: 'Noto Serif', serif;
-    margin-top:10px;
-    display:inline-block;
+    margin-top: 10px;
+    display: inline-block;
 }
 
 nav ul {
-    list-style: none;            /* Quitar puntitos */
-    display: flex;               /* Poner los <li> en horizontal */
-    gap: 20px;                   /* Separación entre enlaces */
+    list-style: none;
+    display: flex;
+    gap: 20px;
     margin: 0;
     padding: 0;
 }
@@ -44,81 +45,162 @@ nav ul li a {
     font-size: 18px;
     color: white;
 }
-/* aqui le voy a dar el fondo a la pagina debajo del header */
 
+/* ================= BLOQUE INICIO ================= */
 .Bloque-inicio {
-    width: 100%;                      /* ancho del rectángulo */
-    margin: 0px ;               
-    background-image: url("imagenes/image\ \(2\).jpg");
-    background-size: cover;          /* cubre todo el rectángulo */
+    width: 100%;
+    margin: 0px;
+    background-image: url("imagenes/image (2).jpg");
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 600px;                    
-    display: flex;                   
+    height: 600px;
+    display: flex;
     justify-content: center;
     padding-top: 90px;
-    text-align: center;            /* opcional: esquinas redondeadas */
-    box-shadow: 0 4px 10px rgba(7, 4, 4, 0.3);  /* opcional: sombra elegante */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(7, 4, 4, 0.3);
     align-items: flex-start;
-
 }
+
 .Bloque-inicio h2 {
     animation: fadeIn 5s ease forwards;
     color: white;
     font-size: 48px;
 }
 
+/* Animación */
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
 
-.Bloque-2{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #302f2e;
-    width:1350px;
-    height: 400px;
-}
-.Bloque-2 a{
-    font-size: 30px;
-    color: white;
-    text-align: center;
-    font-family: "Playfair Display SC", serif;
-    padding: 20px;
-    
-}
-/*Tamaño Carrusel fotos*/
-/* Tus estilos originales para la imagen del carrusel */
+/* ================= CAROUSEL ================= */
 .carousel-item img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  display: block;
-} 
-/* Estilos para el pie de página */
-.footer a:hover i {
-    color: #0d6efd; /* azul Bootstrap */
-    transform: scale(1.2);
-    transition: all 0.3s ease;
-}
-.footer i {
-    font-size: 1.8rem; /* tamaño uniforme */
-    vertical-align: middle; /* opcional: alinea todos al mismo nivel */
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
 }
 
+/* ================= BLOQUE MAPA ================= */
+.Bloque-2-bg {
+    width: 100%;
+    background-color: #302f2e;
+}
+
+.Bloque-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1350px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.Bloque-2 iframe {
+    flex: 1 1 0;
+    width: 100%;
+    height: 300px;
+    border: 3px solid white;
+    border-radius: 12px;
+}
+
+.Bloque-2 .texto a {
+    display: block;
+    color: #f3e7e7;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    text-decoration: none;
+}
+
+/* ================= FOOTER ================= */
 .footer a {
     display: inline-block;
-    margin: 0 0.5rem; /* espacio uniforme entre iconos */
-    color: white;      /* color por defecto */
+    margin: 0 0.5rem;
+    color: white;
     transition: all 0.3s ease;
 }
 
-.footer a:hover i {
-    transform: scale(1.2); /* efecto hover */
-}
-.footer i.fab.fa-tiktok {
-    font-size: 1.45rem; /* un poquito más pequeño para que encaje */
+.footer i {
+    font-size: 1.8rem;
     vertical-align: middle;
+}
+
+.footer a:hover i {
+    color: #0d6efd;
+    transform: scale(1.2);
+}
+
+.footer i.fab.fa-tiktok {
+    font-size: 1.45rem;
+    vertical-align: middle;
+}
+
+/* ================= MEDIA QUERIES ================= */
+
+/* TABLET Y MOBILE */
+@media (max-width: 768px) {
+
+    /* HEADER */
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+        text-align: center;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul li a {
+        font-size: 16px;
+    }
+
+    .iniciarsesion-text {
+        font-size: 16px;
+        margin-top: 5px;
+    }
+
+    /* BLOQUE INICIO */
+    .Bloque-inicio {
+        height: 400px;
+        padding-top: 60px;
+    }
+
+    .Bloque-inicio h2 {
+        font-size: 28px;
+        padding: 0 15px;
+    }
+
+    /* MAPA */
+    .Bloque-2 {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .Bloque-2 iframe {
+        height: 250px;
+    }
+
+    .Bloque-2 .texto a {
+        font-size: 1.2rem;
+    }
+
+    /* FOOTER */
+    .footer i {
+        font-size: 1.4rem;
+    }
+}
+
+/* MOBILE PEQUEÑO */
+@media (max-width: 480px) {
+    .Bloque-inicio h2 {
+        font-size: 22px;
+    }
 }

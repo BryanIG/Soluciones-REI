@@ -26,7 +26,8 @@ body::after {
 
 .titulo-bienvenido {
     font-family: "Playfair Display", serif;
-    font-weight: 600;
+    font-weight: 400px;
+    font-size: max;
     letter-spacing: 1px;
 }
 
@@ -100,5 +101,61 @@ body::after {
 
 .btn-login:hover,
 .btn-register:hover {
-    background-color: #1f1e1d; /* más oscuro */
+    background-color: #1f1e1d;
+}
+
+/* ================= MEDIA QUERY PARA RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+    .login-container {
+        flex-direction: column;
+        min-height: auto;
+        padding: 20px 0;
+        width: 95%;
+    }
+
+    .left-side,
+    .right-side {
+        flex: none;
+        width: 100%;
+        padding: 30px 20px;
+        min-height: 300px;
+    }
+
+    .left-content {
+        padding: 30px 20px;
+        height: auto;
+    }
+
+    .right-side {
+        padding: 30px 20px;
+    }
+
+    .btn-login,
+    .btn-register {
+        width: 100%;
+        font-size: 1rem;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-bienvenido {
+        font-size: 1.5rem; /* Ajusta según convenga */
+        text-align: center;
+    }
+
+    .form-control {
+        font-size: 1rem !important;
+    }
+
+    .input-group-text {
+        font-size: 1rem;
+    }
+
+    .btn-login,
+    .btn-register {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
 }
