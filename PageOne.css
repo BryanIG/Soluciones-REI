@@ -1,0 +1,83 @@
+body {
+  font-family: "Noto Serif", serif;
+}
+
+/* Header transparente */
+.header-transparent {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  background: transparent;
+}
+
+/* Hero con imagen */
+.hero {
+  height: 100vh;
+  background-image: url("imagenes/image\ \(2\).jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* Oscurecer un poquito la imagen */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Contenido del hero (AQUÍ ESTÁ LA MAGIA ✨) */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start; /* ya no al centro */
+  align-items: center;         /* centrado horizontal */
+  text-align: center;
+
+  padding-top: 180px;          /* controla qué tan arriba queda */
+  max-width: 700px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Ajustes visuales extra (opcional pero recomendado) */
+.hero-content h1 {
+  font-size: 3.2rem;
+  margin-bottom: 25px;
+}
+
+.hero-content input {
+  max-width: 500px;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .hero-content {
+    padding-top: 120px;
+  }
+}
+
+.oculto {
+    display: none !important;
+}
+
+[data-categoria] {
+  overflow: hidden;      /* necesario para que height funcione */
+  max-height: 1000px;    /* altura máxima visible */
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+  opacity: 1;
+}
+
+[data-categoria].oculto {
+  max-height: 0;         /* colapsa */
+  opacity: 0;
+  margin: 0;             /* opcional, para que no deje espacio */
+  padding: 0;
+}
