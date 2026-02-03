@@ -1,17 +1,57 @@
+/* ================= BASE ================= */
 body {
   font-family: "Noto Serif", serif;
+  margin: 0;
 }
 
-/* Header transparente */
-.header-transparent {
+/* ================= HEADER PAGEONE ================= */
+.header-pageone {
   position: absolute;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 10;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 60px;
+
   background: transparent;
 }
 
-/* Hero con imagen */
+.header-pageone img {
+  display: block;
+}
+
+/* Contenedor del botón */
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Botón estilo INDEX */
+.header-pageone .btn-outline {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+
+  padding: 8px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: transparent;
+
+  transition: all 0.25s ease;
+}
+
+.header-pageone .btn-outline:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+}
+
+/* ================= HERO ================= */
 .hero {
   height: 100vh;
   background-image: url("imagenes/image\ \(2\).jpg");
@@ -20,15 +60,15 @@ body {
   position: relative;
 }
 
-/* Oscurecer un poquito la imagen */
+/* Oscurecer imagen */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
 }
 
-/* Contenido del hero (AQUÍ ESTÁ LA MAGIA ✨) */
+/* Contenido del hero */
 .hero-content {
   position: relative;
   z-index: 2;
@@ -36,48 +76,172 @@ body {
 
   display: flex;
   flex-direction: column;
-
-  justify-content: flex-start; /* ya no al centro */
-  align-items: center;         /* centrado horizontal */
+  justify-content: flex-start;
+  align-items: center;
   text-align: center;
 
-  padding-top: 180px;          /* controla qué tan arriba queda */
+  padding-top: 160px;
   max-width: 700px;
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
 }
 
-/* Ajustes visuales extra (opcional pero recomendado) */
+/* Título */
 .hero-content h1 {
   font-size: 3.2rem;
   margin-bottom: 25px;
 }
 
+/* Input buscador */
 .hero-content input {
   max-width: 500px;
   width: 100%;
 }
+
+/* Responsive */
 @media (max-width: 768px) {
+  .header-pageone {
+    padding: 12px 30px;
+  }
+
   .hero-content {
-    padding-top: 120px;
+    padding-top: 140px;
+  }
+
+  .hero-content h1 {
+    font-size: 2.4rem;
   }
 }
 
+/* ================= UTILIDADES ================= */
 .oculto {
-    display: none !important;
+  display: none !important;
 }
 
 [data-categoria] {
-  overflow: hidden;      /* necesario para que height funcione */
-  max-height: 1000px;    /* altura máxima visible */
+  overflow: hidden;
+  max-height: 1000px;
   transition: max-height 0.5s ease, opacity 0.5s ease;
   opacity: 1;
 }
 
 [data-categoria].oculto {
-  max-height: 0;         /* colapsa */
+  max-height: 0;
   opacity: 0;
-  margin: 0;             /* opcional, para que no deje espacio */
+  margin: 0;
   padding: 0;
+}
+
+/* ================= FOOTER LINEA NEGRA ================= */
+.footer-bottom-pageone {
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 18px 0;
+  margin-top: 60px;
+}
+
+.footer-bottom-pageone .footer-brand {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.footer-bottom-pageone .footer-credit {
+  margin-top: 6px;
+  font-size: 13px;
+  opacity: 0.65;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .footer-bottom-pageone {
+    padding: 16px 10px;
+  }
+}
+
+/* ================= BUSCADOR UIVERSE – ESTÉTICA REI ================= */
+
+.InputContainer {
+  width: 520px;
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #f3efe7; /* vainilla REI */
+  border-radius: 0.9rem;
+
+  border: 1px solid rgba(176, 141, 87, 0.45);
+
+  cursor: text;
+
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.30),
+    0 6px 14px rgba(0, 0, 0, 0.20);
+
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.InputContainer:focus-within {
+  border-color: #b08d57;
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(176, 141, 87, 0.35);
+}
+
+.input {
+  width: calc(100% - 20px);
+  height: 42px;
+
+  border: none;
+  outline: none;
+
+  background-color: #ffffff;
+  border-radius: 0.7rem;
+
+  padding-left: 16px;
+
+  letter-spacing: 0.6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+
+  color: #0f0f0e;
+
+  caret-color: #b08d57;
+}
+
+/* Placeholder */
+.input::placeholder {
+  color: #7a6a50;
+  font-weight: 400;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .InputContainer {
+    width: 100%;
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 480px) {
+  .InputContainer {
+    height: 52px;
+  }
+
+  .input {
+    font-size: 0.9rem;
+  }
+}
+
+/* Animación hover para tarjetas */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
