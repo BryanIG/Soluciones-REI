@@ -1,14 +1,16 @@
-const loginLink = document.getElementById("login-link");
-const loadingScreen = document.getElementById("loading-screen");
+document.addEventListener("DOMContentLoaded", function () {
 
-loginLink.addEventListener("click", function (e) {
-    e.preventDefault(); // evita irse directo al login
+    const loginLink = document.getElementById("login-link");
+    const loadingScreen = document.getElementById("loading-screen");
 
-    // mostrar loading
-    loadingScreen.classList.add("active");
+    loginLink.addEventListener("click", function (e) {
+        e.preventDefault();
 
-    // esperar y redirigir
-    setTimeout(() => {
-        window.location.href = "login.html";
-    }, 2000); // 2 segundos
+        loadingScreen.classList.add("active");
+
+        setTimeout(() => {
+            window.location.href = "PageOne.html";
+        }, 2000);
+    });
+
 });

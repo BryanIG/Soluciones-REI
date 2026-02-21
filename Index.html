@@ -33,10 +33,9 @@
         <nav>
             <ul>
                 <li>
-                    <a href="PageOne.html" class="btn-skip-login">
+                    <a href="PageOne.html" class="btn-skip-login" id="login-link">
                         Entrar
                     </a>
-                    <a class="iniciarsesion-text" href="login.html" id="login-link">Iniciar sesión</a>
                 </li>
             </ul>
         </nav>
@@ -45,12 +44,12 @@
 
     <!-- ================= BLOQUE INICIO ================= -->
     <div class="Bloque-inicio">
-        <h2>
-            RECONOCIMIENTOS EJECUTIVOS<br>
-            CON SUPREMA ELEGANCIA
-        </h2>
 
-        <a href="#servicios" class="btn-leer-mas">LEER MÁS</a>
+        <div class="hero-brand">
+            <img src="imagenes/logocontenedor.png" alt="Reconocimientos REI" class="hero-logo">
+
+            <a href="#servicios" class="btn-leer-mas">LEER MÁS</a>
+        </div>
 
     </div>
 
@@ -146,15 +145,26 @@
                 <p><i class="bi bi-telephone-fill"></i> 811 786 5089</p>
                 <p><i class="bi bi-envelope-fill"></i> reconocimientosrei@gmail.com</p>
 
-                <ul class="footer-icons">
-                    <li><a href="https://www.facebook.com/share/1ZTKtwZ4SQ/" target="_blank"><i
-                                class="bi bi-facebook"></i></a></li>
-                    <li><a href="https://www.instagram.com/reconocimientosrei" target="_blank"><i
-                                class="bi bi-instagram"></i></a></li>
-                    <li><a href="https://wa.me/8117865089" target="_blank"><i class="bi bi-whatsapp"></i></a></li>
-                    <li><a href="https://www.tiktok.com/@reconocimientosrei" target="_blank"><i
-                                class="bi bi-tiktok"></i></a></li>
-                </ul>
+                <!-- ================= REDES FLOTANTES ================= -->
+                <div class="social-floating">
+
+                    <a href="https://www.facebook.com/share/1ZTKtwZ4SQ/" target="_blank" class="social-tab facebook">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/reconocimientosrei" target="_blank" class="social-tab instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="https://wa.me/8117865089" target="_blank" class="social-tab whatsapp">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@reconocimientosrei" target="_blank" class="social-tab tiktok">
+                        <i class="bi bi-tiktok"></i>
+                    </a>
+
+                </div>
             </div>
 
             <div class="footer-right">
@@ -170,7 +180,7 @@
         </div>
     </footer>
 
-    <!-- ===== LOADING SCREEN ===== -->
+    <!-- Pantalla de carga -->
     <div id="loading-screen">
         <span class="loader"></span>
         <p class="loading-text">Un momento por favor…</p>
@@ -178,6 +188,44 @@
 
     <script src="loading.js"></script>
 
+    <script>
+        // Escribir contraseña para ingresar a login administrativo ----
+        let secretBuffer = "";
+        const secretCode = "diosesgrande";
+
+        document.addEventListener("keydown", (e) => {
+            secretBuffer += e.key.toLowerCase();
+
+            if (secretBuffer.includes(secretCode)) {
+                window.location.href = "login.html";
+            }
+
+            if (secretBuffer.length > 20) {
+                secretBuffer = secretBuffer.slice(-20);
+            }
+        });
+
+        // 5 toques a logo para ingresar a login administrativo
+        let tapCount = 0;
+        let tapTimer;
+        const logo = document.querySelector(".logo-link");
+
+        logo.addEventListener("click", () => {
+            tapCount++;
+
+            if (tapCount === 1) {
+                tapTimer = setTimeout(() => {
+                    tapCount = 0;
+                }, 2000);
+            }
+
+            if (tapCount >= 5) {
+                clearTimeout(tapTimer);
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+    
 </body>
 
 </html>

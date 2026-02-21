@@ -11,8 +11,8 @@
 
 :root {
     --negro: #0f0f0f;
-    --dorado: #b08d57;
-    --dorado-claro: #d4af37;
+    --dorado: #b30000;
+    --dorado-claro: #fefefd;
     --gris: #eae6df;
     --blanco: #ffffff;
 }
@@ -286,4 +286,41 @@ form {
         font-size: 30px;
     }
 
+}
+
+.close-login {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    z-index: 10;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    border: 2px solid var(--dorado);
+
+    color: var(--dorado);
+    background: transparent;
+
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+
+    transition:
+        transform 0.35s ease,
+        background-color 0.35s ease,
+        color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.close-login:hover {
+    background: linear-gradient(45deg, var(--dorado), var(--dorado-claro));
+    color: var(--negro);
+    transform: rotate(90deg) scale(1.15);
+    box-shadow: 0 0 14px rgba(176, 141, 87, 0.6);
 }

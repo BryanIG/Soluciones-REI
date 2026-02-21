@@ -3,64 +3,284 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Main Shop</title>
+    <title>CATALOGO || Reconocimientos REI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap -->
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- CSS propio -->
     <link rel="stylesheet" href="PageOne.css">
 
-    <!-- Fuentes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fuente -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
+    <!-- LOADING GLOBAL -->
+    <div id="loading-screen">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Cargando...</p>
+    </div>
+
     <!-- HEADER -->
-    <header class="header-pageone header-fixed">
-        <a href="PageOne.html" class="logo-link">
-            <img src="imagenes/logo.png" alt="Soluciones REI logo" width="130" height="80">
+    <header>
+        <a href="#top" class="logo-link">
+            <img class="img-1" src="imagenes/logo.png" alt="Soluciones REI logo" width="130" height="80">
         </a>
 
-        <nav class="header-actions">
-            <a href="index.html" class="btn-outline">
-                Cerrar sesión
-            </a>
+        <nav>
+            <ul style="display:flex; gap:15px; list-style:none; align-items:center;">
+
+                <li>
+                    <a href="Index.html" class="btn-skip-login">
+                        Regresar
+                    </a>
+                </li>
+
+                <li id="adminOptions" style="display:none;">
+                    <button class="btn-skip-login btn-admin-link" type="button" data-bs-toggle="modal"
+                        data-bs-target="#adminModal">
+                        Panel Admin
+                    </button>
+                </li>
+
+                <li id="logoutBtnContainer" style="display:none;">
+                    <button class="btn-skip-login btn-logout-link" type="button" id="logoutBtn">
+                        Cerrar sesión
+                    </button>
+                </li>
+
+            </ul>
         </nav>
     </header>
 
     <!-- HERO -->
     <section class="hero">
-        <div class="hero-content text-white">
-            <h1>Encuentra lo que buscas</h1>
-
-            <!-- BUSCADOR -->
-            <div class="InputContainer">
-                <input placeholder="Buscar cristal, madera..." id="buscador" class="input" name="text" type="text">
-            </div>
+        <div class="hero-content text-white text-center">
+            <h1>Nuestros Productos</h1>
+            <p>Explora nuestros reconocimientos personalizados</p>
         </div>
     </section>
 
-    <!-- PRODUCTOS -->
-    <section class="Bloque-productos py-5">
+    <!-- CATEGORÍAS -->
+    <section class="categorias-section py-5">
         <div class="container">
-            <div id="productos" class="row justify-content-center g-4">
-                <!-- Las tarjetas se generan con JS -->
-            </div>
+
+            <div class="row g-4 justify-content-center"></div>
+            <!-- CATEGORÍAS DINÁMICAS (se llenan desde Firestore) -->
+            <div id="categoriasDinamicas" class="row g-4 justify-content-center mt-4"></div>
         </div>
     </section>
 
-    <!-- JS -->
-    <script src="PageOne.js"></script>
+    <!-- MODAL CATEGORÍAS -->
+    <div class="modal fade" id="categoriaModal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
 
-    <!-- FOOTER -->
-    <footer class="footer-bottom-pageone">
-        <div class="footer-brand">© 2026 Reconocimientos REI</div>
-        <div class="footer-credit">Diseño y Desarrollo Web por FortBros Studios</div>
-    </footer>
+                <div class="modal-header bg-dark text-white">
+                    <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+
+                            <!-- CARRUSEL (IZQUIERDA) -->
+                            <div class="col-md-6">
+                                <div id="carouselCategoria" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner" id="carouselInner"></div>
+
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselCategoria" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                    </button>
+
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselCategoria" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon"></span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- TEXTO (DERECHA) -->
+                            <div class="col-md-6 ps-md-5">
+                                <h2 id="modalTitulo" class="mb-3 fw-bold"></h2>
+                                <p id="modalDescripcion" class="mb-4"></p>
+
+                                <button class="btn btn-dark px-4 py-2" id="btnCotizarWhatsapp">Cotizar</button>
+
+                                <!-- Acciones solo Admin -->
+                                <div id="modalAdminActions" class="mt-3 d-none">
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-outline-dark" id="btnEditarCategoria">✏️ Editar</button>
+                                        <button class="btn btn-outline-danger" id="btnEliminarCategoria">🗑️
+                                            Eliminar</button>
+                                    </div>
+                                    <small class="text-muted d-block mt-2">
+                                        Solo visible para administradores.
+                                    </small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ADMIN -->
+    <div class="modal fade" id="adminModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title">Panel Administrador</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- ✅ MODAL BODY CON TABS -->
+                <div class="modal-body">
+
+                    <!-- Tabs -->
+                    <ul class="nav nav-pills admin-tabs mb-3" id="adminTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active admin-tab-btn" id="tab-categorias" data-bs-toggle="pill"
+                                data-bs-target="#pane-categorias" type="button" role="tab">
+                                Categorías
+                            </button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link admin-tab-btn" id="tab-whatsapp" data-bs-toggle="pill"
+                                data-bs-target="#pane-whatsapp" type="button" role="tab">
+                                WhatsApp
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+
+                        <!-- =============================
+                 TAB 1: CATEGORÍAS
+            ============================== -->
+                        <div class="tab-pane fade show active" id="pane-categorias" role="tabpanel"
+                            aria-labelledby="tab-categorias">
+
+                            <label class="form-label fw-bold">ID de categoría (sin espacios)</label>
+                            <input id="adminCategoriaId" class="form-control mb-2"
+                                placeholder="Ej: trofeos, pines, nuevos-productos">
+                            <small class="text-muted d-block mb-3">
+                                Tip: usa minúsculas y guiones. Ej: <b>trofeos-resina</b>
+                            </small>
+
+                            <label class="form-label fw-bold">Título</label>
+                            <input id="adminTitulo" class="form-control mb-3" placeholder="Título de la categoría">
+
+                            <label class="form-label fw-bold">Descripción</label>
+                            <textarea id="adminDescripcion" class="form-control mb-3" rows="3"
+                                placeholder="Descripción de la categoría"></textarea>
+
+                            <label class="form-label fw-bold">Imágenes (puedes seleccionar varias)</label>
+                            <input type="file" id="adminImagenes" class="form-control mb-3" accept="image/*" multiple>
+
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-dark w-100" id="btnGuardarTodo">💾 Guardar cambios</button>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <h6 class="fw-bold mb-3">Imágenes actuales</h6>
+                            <div id="adminListaImagenes" class="d-flex flex-column gap-2"></div>
+
+                        </div>
+
+                        <!-- =============================
+                 TAB 2: WHATSAPP
+            ============================== -->
+                        <div class="tab-pane fade" id="pane-whatsapp" role="tabpanel" aria-labelledby="tab-whatsapp">
+
+                            <div class="p-3 border rounded bg-light">
+                                <h6 class="fw-bold mb-2">WhatsApp de la empresa</h6>
+
+                                <label class="form-label fw-bold">Número (formato internacional +52)</label>
+                                <input id="adminWhatsappTelefono" class="form-control mb-2"
+                                    placeholder="Ej: 528128953057">
+
+                                <div class="d-flex gap-2 mb-2">
+                                    <button class="btn btn-outline-dark" id="btnGuardarWhatsapp">Guardar
+                                        WhatsApp</button>
+                                </div>
+
+                                <small class="text-muted d-block">
+                                    Este número es el que usará el botón <b>Cotizar</b>.
+                                </small>
+
+                                <hr class="my-4">
+
+                                <h6 class="fw-bold mb-2">Plantilla del mensaje</h6>
+
+                                <textarea id="adminPlantillaMensaje" class="form-control mb-2" rows="6"
+                                    placeholder="Escribe la plantilla... Usa {{producto}} donde irá el nombre del producto"></textarea>
+
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <small class="text-muted">
+                                        Usa <b>{{producto}}</b> para insertar el nombre automático.
+                                    </small>
+
+                                    <button class="btn btn-dark" id="btnGuardarPlantilla">
+                                        Guardar plantilla
+                                    </button>
+                                </div>
+
+                                <div class="preview-wa">
+                                    <div class="preview-wa-header">Vista previa</div>
+                                    <div class="preview-wa-chat">
+                                        <div class="preview-wa-bubble" id="previewMensajeWA">
+                                            Aquí aparecerá la vista previa...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="PageOne.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- UI: Toasts + Modal Confirm -->
+    <div id="ui-toasts" class="ui-toasts" aria-live="polite" aria-atomic="true"></div>
+
+    <div id="ui-modal" class="ui-modal" aria-hidden="true">
+        <div class="ui-modal__backdrop" data-close="1"></div>
+
+        <div class="ui-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ui-modal-title">
+            <div class="ui-modal__header">
+                <div class="ui-modal__icon" id="ui-modal-icon">!</div>
+
+                <div class="ui-modal__titles">
+                    <h3 id="ui-modal-title" class="ui-modal__title">Confirmación</h3>
+                    <p id="ui-modal-desc" class="ui-modal__desc">¿Seguro?</p>
+                </div>
+
+                <button class="ui-modal__x" id="ui-modal-x" aria-label="Cerrar">✕</button>
+            </div>
+
+            <div class="ui-modal__footer">
+                <button class="ui-btn ui-btn--ghost" id="ui-modal-cancel">Cancelar</button>
+                <button class="ui-btn ui-btn--danger" id="ui-modal-ok">Aceptar</button>
+            </div>
+        </div>
+    </div>
 
 </body>
 

@@ -1,70 +1,127 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesion</title>
+    <title>Panel Administrador</title>
     <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
+
 <body>
+
     <div class="container">
-        <!--login-->
+
+        <a href="index.html" class="close-login" aria-label="Volver al inicio">
+            <i class="fa-solid fa-xmark"></i>
+        </a>
+
+        <!-- 🔐 LOGIN -->
         <div class="form-box login">
-            <form action="#">
-                <h1>Iniciar Sesion</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="Usuario" required>
-                    <i class="fa-solid fa-user"></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Contraseña" required>
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <button type="submit" class=" btn">Ingresar</button>
-                <p>o inicia sesion de otras plataformas</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fa-brands fa-google"></i></a>
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                </div>
-            </form>
-        </div>
 
-        <!--register -->
-        <div class="form-box register">
-            <form action="#">
-                <h1>Registrate</h1>
+            <form id="loginForm">
+                <h1>Iniciar Sesión</h1>
+
                 <div class="input-box">
-                    <input type="text" placeholder="Usuario" required>
+                    <input type="email" id="email" placeholder="Correo electrónico" required>
                     <i class="fa-solid fa-user"></i>
                 </div>
+
                 <div class="input-box">
-                    <input type="password" placeholder="Contraseña" required>
+                    <input type="password" id="password" placeholder="Contraseña" required>
                     <i class="fa-solid fa-lock"></i>
                 </div>
 
-                <button type="submit" class=" btn">Registrar</button>
+                <button type="submit" class="btn">Ingresar</button>
             </form>
-        </div>
 
-        <!--toggle-->
-        <div class="toggle-box">
-            <!--toggle box left-->
-            <div class="toggle-panel toggle-left">
-                <h1>Hola, Bienvenido</h1>
-                <p>No tengo una Cuenta</p>
-                <button class="btn register-btn">Registrate</button>
+            <!-- 👑 PANEL ADMIN -->
+            <div id="adminPanel" style="display:none; text-align:center;">
+                <h1>Bienvenido Administrador 🔥</h1>
+                <p>Sesión iniciada correctamente</p>
+                <button id="logoutBtn" class="btn">Cerrar sesión</button>
             </div>
 
-            <!--toggle box right-->
-            <div class="toggle-panel toggle-right">
-                <h1>Bienvenido De Vuelta</h1>
-                <p>Ya tengo una Cuenta</p>
-                <button class="btn login-btn">Ingresa</button>
+        </div>
+
+        <div class="toggle-box">
+            <div class="toggle-panel toggle-left">
+                <h1>Panel Administrador</h1>
+                <p>Ingresa si trabajas con nosotros</p>
             </div>
         </div>
 
     </div>
+
+
+    <!-- 🔥 FIREBASE -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
+
+        import {
+            getFirestore,
+            doc,
+            getDoc
+        } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDBYLehTam7rJWrkzH0IUirJ9gn2aWxf0E",
+            authDomain: "reconocimientos-rei.firebaseapp.com",
+            projectId: "reconocimientos-rei",
+            storageBucket: "reconocimientos-rei.firebasestorage.app",
+            messagingSenderId: "915562838166",
+            appId: "1:915562838166:web:4e75e942268977277f2ab7"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const form = document.getElementById("loginForm");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        // 🔐 LOGIN
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            try {
+                const cred = await signInWithEmailAndPassword(auth, email, password);
+
+                // 🔎 Verificar si es admin en colección "usuarios"
+                const adminRef = doc(db, "usuarios", cred.user.uid);
+                const adminSnap = await getDoc(adminRef);
+
+                if (adminSnap.exists()) {
+                    // ✅ Es admin → ir a PageOne
+                    window.location.href = "PageOne.html";
+                } else {
+                    // ❌ No es admin
+                    alert("No tienes permisos de administrador");
+                    await signOut(auth);
+                }
+
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        });
+
+        // 🚪 Logout
+        logoutBtn.addEventListener("click", async () => {
+            await signOut(auth);
+        });
+
+    </script>
+
 </body>
-<script src="login.js"></script>
+
 </html>
