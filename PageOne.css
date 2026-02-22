@@ -1115,3 +1115,23 @@ header nav ul {
     width: 100%;
   }
 }
+
+/* FOOTER */
+.footer-bottom {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 18px 0;
+    margin-top: 60px;
+}
+
+.footer-brand {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.footer-credit {
+    margin-top: 6px;
+    font-size: 13px;
+    opacity: 0.65;
+}
