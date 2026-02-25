@@ -41,14 +41,23 @@
         </nav>
     </header>
 
-
     <!-- ================= BLOQUE INICIO ================= -->
     <div class="Bloque-inicio">
 
+        <!-- IMAGEN IZQUIERDA (madera) -->
+        <img class="hero-deco hero-left" src="imagenes/recosmadera.png" alt="Reconocimientos de madera">
+
+        <!-- IMAGEN DERECHA (trofeos) -->
+        <img class="hero-deco hero-right" src="imagenes/trofeos.png" alt="Trofeos">
+
         <div class="hero-brand">
             <img src="imagenes/logocontenedor.png" alt="Reconocimientos REI" class="hero-logo">
-
             <a href="#servicios" class="btn-leer-mas">LEER MÁS</a>
+
+            <!-- BOTÓN POPUP URGENTE -->
+            <a href="#" class="btn-urgente" id="btnUrgente">
+                <i class="bi bi-lightning-charge-fill"></i> RECONOCIMIENTOS URGENTES
+            </a>
         </div>
 
     </div>
@@ -131,8 +140,6 @@
         </div>
     </section>
 
-
-
     <!-- ================= FOOTER ================= -->
     <footer id="tempaltemo_footer">
         <div class="footer-container">
@@ -186,6 +193,55 @@
         <p class="loading-text">Un momento por favor…</p>
     </div>
 
+    <!-- ================= POPUP URGENTES ================= -->
+    <!-- (IMPORTANTE: ahora está ANTES de los scripts, para que el JS lo encuentre) -->
+    <div class="urgent-overlay" id="urgentOverlay" aria-hidden="true">
+        <div class="urgent-modal" role="dialog" aria-modal="true" aria-labelledby="urgentTitle">
+
+            <button class="urgent-close" id="urgentClose" aria-label="Cerrar">
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+            <div class="urgent-content">
+                <!-- IZQUIERDA: TEXTO -->
+                <div class="urgent-left">
+                    <div class="urgent-badge">ENTREGA EXPRESS</div>
+
+                    <h2 id="urgentTitle">RECONOCIMIENTOS URGENTES</h2>
+
+                    <p class="urgent-text">
+                        ¿Necesitas un reconocimiento <b>hoy</b> o <b>mañana</b>? Te atendemos al momento y
+                        te damos opciones rápidas sin perder la <b>calidad premium</b>.
+                    </p>
+
+                    <div class="urgent-cta">
+                        <a class="urgent-whats" target="_blank"
+                            href="https://wa.me/528117865089?text=Hola%20REI!%20Necesito%20un%20reconocimiento%20URGENTE.%20Me%20pueden%20cotizar%20por%20favor?">
+                            <i class="bi bi-whatsapp"></i> Cotizar por WhatsApp
+                        </a>
+
+                        <a class="urgent-secondary" href="PageOne.html">
+                            Ver catálogo
+                        </a>
+                    </div>
+
+                    <div class="urgent-mini">
+                        <span><i class="bi bi-clock-fill"></i> Respuesta rápida</span>
+                        <span><i class="bi bi-truck"></i> Express</span>
+                        <span><i class="bi bi-award-fill"></i> Premium</span>
+                    </div>
+                </div>
+
+                <!-- DERECHA: IMAGEN -->
+                <div class="urgent-right">
+                    <img src="imagenes/chicaurgente.png" alt="Asesora REI" class="urgent-girl">
+                    <div class="urgent-stamp">URGENTE</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <script src="loading.js"></script>
 
     <script>
@@ -225,7 +281,45 @@
             }
         });
     </script>
-    
+
+    <script>
+        // (IMPORTANTE: ahora el overlay y el botón YA existen cuando corre este script)
+        const btnUrgente = document.getElementById("btnUrgente");
+        const urgentOverlay = document.getElementById("urgentOverlay");
+        const urgentClose = document.getElementById("urgentClose");
+
+        function openUrgent() {
+            urgentOverlay.classList.add("active");
+            urgentOverlay.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeUrgent() {
+            urgentOverlay.classList.remove("active");
+            urgentOverlay.setAttribute("aria-hidden", "true");
+            document.body.style.overflow = "";
+        }
+
+        btnUrgente?.addEventListener("click", (e) => {
+            e.preventDefault();
+            // seguridad extra por si algo faltara
+            if (!urgentOverlay) return;
+            openUrgent();
+        });
+
+        urgentClose?.addEventListener("click", closeUrgent);
+
+        // Cerrar si tocas fuera del modal
+        urgentOverlay?.addEventListener("click", (e) => {
+            if (e.target === urgentOverlay) closeUrgent();
+        });
+
+        // Cerrar con ESC
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && urgentOverlay?.classList.contains("active")) closeUrgent();
+        });
+    </script>
+
 </body>
 
 </html>

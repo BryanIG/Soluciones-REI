@@ -1135,3 +1135,53 @@ header nav ul {
     font-size: 13px;
     opacity: 0.65;
 }
+
+/* =============================
+   MARCA DE AGUA EN CARRUSEL (MODAL)
+   Aplica a TODAS las imágenes dinámicas
+============================= */
+
+#categoriaModal #carouselCategoria {
+  position: relative; /* necesario para el overlay */
+}
+
+/* logo encima del carrusel */
+/* logo encima del carrusel (esquina + brillo) */
+#categoriaModal #carouselCategoria::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background-image: url("imagenes/logo.png");
+  background-repeat: no-repeat;
+
+  /* 👇 esquina inferior derecha */
+  background-position: right 18px bottom 18px;
+  background-size: 170px;        /* tamaño del logo */
+
+  opacity: 0.50;                 /* más visible */
+  filter: brightness(1.35) contrast(1.15) drop-shadow(0 0 10px rgba(255,255,255,.25));
+  pointer-events: none;
+  z-index: 3;
+}
+
+@media (max-width: 768px){
+  #categoriaModal #carouselCategoria::after{
+    background-size: 120px;
+    background-position: right 12px bottom 12px;
+    opacity: 0.20;
+  }
+}
+
+/* Asegura que imagen y flechas queden bien */
+#categoriaModal #carouselCategoria .carousel-inner,
+#categoriaModal #carouselCategoria .carousel-item,
+#categoriaModal #carouselCategoria img {
+  position: relative;
+  z-index: 1;
+}
+
+#categoriaModal #carouselCategoria .carousel-control-prev,
+#categoriaModal #carouselCategoria .carousel-control-next {
+  z-index: 4; /* flechas por encima del logo */
+}

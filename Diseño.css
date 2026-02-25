@@ -74,6 +74,7 @@ nav ul {
 }
 
 /* ================= BLOQUE INICIO ================= */
+/* ================= BLOQUE INICIO ================= */
 .Bloque-inicio {
     width: 100%;
     min-height: 100vh;
@@ -81,6 +82,9 @@ nav ul {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    position: relative;            /* 👈 IMPORTANTE para absolute */
+    overflow: hidden;              /* 👈 para que no “se salga” */
 
     display: flex;
     justify-content: center;
@@ -192,6 +196,73 @@ nav ul {
         filter: drop-shadow(0 0 18px rgba(212,175,55,0.45));
     }
 }
+
+/* ================= IMÁGENES DECORATIVAS HERO ================= */
+.hero-deco{
+    position: absolute;
+    bottom: 30px;
+    height: auto;
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.35));
+}
+
+/* PC */
+.hero-left{
+    left: 30px;
+    width: 600px;   /* antes 520 */
+}
+
+.hero-right{
+    right: 30px;
+    width: 660px;   /* antes 580 */
+}
+
+/* Para que el logo quede arriba de las imágenes */
+.hero-brand{
+    position: relative;
+    z-index: 3;
+}
+
+/* ================= RESPONSIVE HERO (MÓVIL) ================= */
+@media (max-width: 768px){
+    .Bloque-inicio{
+        min-height: 920px; /* 👈 para que quepan abajo como en tu ejemplo */
+        padding-top: 120px;
+    }
+
+    .hero-left{
+        left: 16px;
+        width: 360px;
+        bottom: 170px;
+    }
+
+    .hero-right{
+        right: 16px;
+        width: 400px;
+        bottom: 170px;
+    }
+}
+
+@media (max-width: 480px){
+    .Bloque-inicio{
+        min-height: 980px; /* más alto en celulares chicos */
+    }
+
+    .hero-left{
+        width: 330px;
+        bottom: 260px;
+    }
+
+    .hero-right{
+        width: 360px;
+        bottom: 240px;
+        left: 100px;
+    }
+}
+
+
 
 /* ================ BOTON ================= */
 
@@ -695,4 +766,244 @@ nav ul {
     .social-tab:hover {
         width: 45px;
     }
+}
+
+/* ================= BOTÓN LLAMATIVO URGENTES ================= */
+/* ================= BOTÓN URGENTE FLOTANTE ================= */
+.btn-urgente{
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #fff;
+
+  background: linear-gradient(135deg, #b30000, #ff2a2a);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+
+  transition: all .25s ease;
+}
+
+/* Hover premium */
+.btn-urgente:hover{
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.55);
+}
+
+/* Animación sutil tipo Apple */
+@keyframes pulseUrgent{
+  0%{ box-shadow: 0 0 0 0 rgba(179,0,0,0.6); }
+  70%{ box-shadow: 0 0 0 12px rgba(179,0,0,0); }
+  100%{ box-shadow: 0 0 0 0 rgba(179,0,0,0); }
+}
+
+.btn-urgente{
+  animation: pulseUrgent 2.5s infinite;
+}
+
+@media (max-width: 480px){
+  .btn-urgente{
+    bottom: 20px;
+    right: 18px;
+    padding: 12px 16px;
+    font-size: 12px;
+  }
+}
+
+/* ================= POPUP URGENTES ================= */
+.urgent-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001; /* arriba del loading (9999) */
+  padding: 18px;
+}
+
+.urgent-overlay.active{ display: flex; }
+
+.urgent-modal{
+  width: min(980px, 96vw);
+  border-radius: 22px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(179,0,0,0.35), transparent 45%),
+    radial-gradient(circle at 80% 10%, rgba(255,255,255,0.10), transparent 45%),
+    rgba(10,10,10,0.96);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+  position: relative;
+  animation: urgentPop .22s ease;
+}
+
+@keyframes urgentPop{
+  from{ transform: translateY(10px) scale(.98); opacity: 0; }
+  to{ transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.urgent-close{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.urgent-content{
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  min-height: 460px;
+}
+
+.urgent-left{
+  padding: 44px 42px 34px;
+  color: #fff;
+}
+
+.urgent-badge{
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(179,0,0,0.35);
+  margin-bottom: 14px;
+}
+
+.urgent-left h2{
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.05;
+  margin: 0 0 14px;
+}
+
+.urgent-text{
+  max-width: 520px;
+  color: rgba(255,255,255,0.86);
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+
+.urgent-cta{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.urgent-whats{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: #25D366;
+  color: #111;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: .5px;
+}
+
+.urgent-secondary{
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.22);
+  color: #fff;
+  text-decoration: none;
+  background: rgba(255,255,255,0.06);
+}
+
+.urgent-mini{
+  margin-top: 18px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  color: rgba(255,255,255,0.75);
+  font-size: 13px;
+}
+
+.urgent-mini span{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.25);
+  padding: 8px 10px;
+  border-radius: 999px;
+}
+
+/* Lado derecho */
+.urgent-right{
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.40));
+  display: grid;
+  place-items: end center;
+  padding: 24px;
+}
+
+.urgent-girl{
+  width: min(340px, 85%);
+  height: auto;
+  filter: drop-shadow(0 18px 40px rgba(0,0,0,0.60));
+}
+
+.urgent-stamp{
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  transform: rotate(-10deg);
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.25);
+  background: rgba(179,0,0,0.80);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px){
+  .urgent-content{
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .urgent-left{
+    padding: 30px 22px 18px;
+  }
+  .urgent-right{
+    padding: 18px;
+    place-items: center;
+  }
+  .urgent-girl{
+    width: min(260px, 70%);
+  }
+  .urgent-stamp{
+    right: 14px;
+    bottom: 14px;
+  }
 }
