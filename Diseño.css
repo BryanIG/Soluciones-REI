@@ -266,60 +266,105 @@ nav ul {
 
 /* ================ BOTON ================= */
 
-.btn-leer-mas {
-    display: inline-block;
-    padding: 12px 30px;
-    border: 1px solid #fff;
-    color: #fff;
-    margin-top: 6px;
-    text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
-}
-
-.btn-leer-mas:hover {
-    transform: scale(1.07);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-}
-
+.btn-leer-mas,
+.btn-skip-login,
 .iniciarsesion-text {
-    display: inline-block;
-    padding: 10px 26px;
-    border: 1px solid #fff;
-    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 34px;
     text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(90, 0, 0, 0.92), rgba(179, 0, 0, 0.96));
+    box-shadow:
+        0 10px 22px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.28);
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        filter 0.28s ease,
+        background 0.28s ease;
 }
 
-.iniciarsesion-text:hover {
-    transform: scale(1.07);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+.btn-leer-mas {
+    margin-top: 10px;
+    min-width: 185px;
 }
 
-/* BOTÓN TEMPORAL - SALTAR LOGIN */
 .btn-skip-login {
-    display: inline-block;
-    padding: 10px 26px;
-    border: 1px solid #fff;
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
+    min-width: 250px;
 }
 
-.btn-skip-login:hover {
-    transform: scale(1.07);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+.btn-leer-mas::before,
+.btn-skip-login::before,
+.iniciarsesion-text::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -130%;
+    width: 55%;
+    height: 100%;
+    background: linear-gradient(
+        115deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.10) 30%,
+        rgba(255, 255, 255, 0.45) 50%,
+        rgba(255, 255, 255, 0.10) 70%,
+        transparent 100%
+    );
+    transform: skewX(-20deg);
+    transition: left 0.75s ease;
+}
+
+.btn-leer-mas:hover,
+.btn-skip-login:hover,
+.iniciarsesion-text:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow:
+        0 18px 34px rgba(0, 0, 0, 0.42),
+        0 0 18px rgba(179, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.30);
+    filter: brightness(1.08);
+}
+
+.btn-leer-mas:hover::before,
+.btn-skip-login:hover::before,
+.iniciarsesion-text:hover::before {
+    left: 150%;
+}
+
+.btn-leer-mas:active,
+.btn-skip-login:active,
+.iniciarsesion-text:active {
+    transform: scale(0.98);
 }
 
 @media (max-width: 480px) {
-    .hero-logo {
-        width: 320px;
-        margin-bottom: 10px;
+    .btn-leer-mas,
+    .btn-skip-login,
+    .iniciarsesion-text {
+        padding: 12px 22px;
+        font-size: 12px;
+        letter-spacing: 1.6px;
+        border-radius: 12px;
+    }
+
+    .btn-skip-login {
+        min-width: auto;
+    }
+
+    .btn-leer-mas {
+        min-width: 160px;
     }
 }
 

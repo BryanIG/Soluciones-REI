@@ -178,6 +178,17 @@ function normalizarTelefonoWA(num) {
     return String(num || "").replace(/[^\d]/g, "");
 }
 
+function esCategoriaNueva(fechaFirestore) {
+    if (!fechaFirestore) return false;
+
+    const fecha = fechaFirestore.toDate ? fechaFirestore.toDate() : new Date(fechaFirestore);
+    const ahora = new Date();
+
+    const dias = (ahora - fecha) / (1000 * 60 * 60 * 24);
+
+    return dias <= 7;
+}
+
 function armarMensajeCotizacion({ tituloCategoria, idCategoria }) {
     const nombre = (tituloCategoria || idCategoria || "una categoría").trim();
 
@@ -442,15 +453,19 @@ async function cargarCategoriasDinamicas() {
             const titulo = (data.titulo || "").trim();
             const tieneUpdatedAt = !!data.updatedAt; // solo los creados desde el panel
             if (!titulo || imgs.length === 0 || !tieneUpdatedAt) return;
+            const esNuevo = esCategoriaNueva(data.updatedAt);
 
             cont.innerHTML += `
-        <div class="col-md-4">
-          <div class="categoria-card" onclick="abrirModal('${id}')">
-            <img src="${portada}" class="img-fluid">
-            <h4>${titulo}</h4>
-          </div>
-        </div>
-      `;
+<div class="col-md-4">
+  <div class="categoria-card" onclick="abrirModal('${id}')">
+
+    ${esNuevo ? `<div class="badge-nuevo">NUEVO</div>` : ""}
+
+    <img src="${portada}" class="img-fluid">
+    <h4>${titulo}</h4>
+  </div>
+</div>
+`;
         });
     } finally {
         hideLoading();
